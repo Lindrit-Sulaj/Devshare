@@ -1,13 +1,10 @@
-import prisma from "@/lib/prisma"
+import { Post, Topics } from "@/components"
 
 export default async function Home() {
-  const user = await prisma.user.findMany()
-  
   return (
-    <main>
-      <pre>
-        { JSON.stringify(user, null, 2) }
-      </pre>
+    <main className="bg-neutral-100 h-screen">
+      <Post />
+      <Topics />
     </main>
   )
 }
