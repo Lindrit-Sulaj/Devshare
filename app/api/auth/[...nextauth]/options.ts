@@ -51,5 +51,5 @@ export const options: NextAuthOptions = {
   pages: {
     signIn: '/'
   },
-  secret: process.env.NEXTAUTH_SECRET
+  secret: "process.env.NEXTAUTH_SECRET",
 }
