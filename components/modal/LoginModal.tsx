@@ -1,7 +1,6 @@
 "use client"
 import React, { FormEvent, useState } from "react";
 import { useLoginModal } from "../ClientContext";
-import { signIn } from "next-auth/react";
 
 export default function LoginModal() {
   const { opened, onClose } = useLoginModal();
@@ -11,16 +10,16 @@ export default function LoginModal() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     
-    const res = await signIn("credentials", {
-      email,
-      password,
-    })
+    // const res = await signIn("credentials", {
+    //   email,
+    //   password,
+    // })
 
-    if (res?.error) {
-      console.log(res?.error);
-    } else {
-      console.log(res?.status)
-    }
+    // if (res?.error) {
+    //   console.log(res?.error);
+    // } else {
+    //   console.log(res?.status)
+    // }
 
     onClose();
   }
