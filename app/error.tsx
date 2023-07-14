@@ -8,7 +8,7 @@ export default function Error({
   reset: () => void;
 }) {
   return (
-    <div>
+    <div className="mt-[40px]">
       <h2>Something went wrong</h2>
       <button onClick={() => reset()}>
         Try again
