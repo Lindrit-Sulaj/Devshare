@@ -2,6 +2,9 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import AuthProvider from './AuthProvider'
+import { Navbar, ClientProvider } from '@/components'
+import LoginModal from '@/components/modal/LoginModal'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -18,9 +21,12 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${inter.className} flex flex-col lg:flex-row`}>
         <AuthProvider>
-          { children }
+          <ClientProvider>
+            <LoginModal />
+            <Navbar />
+          </ClientProvider>
+          {children}
         </AuthProvider>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       </body>
     </html>
   )
