@@ -1,13 +1,9 @@
 import { Post, Topics } from "@/components"
+import prisma from "@/lib/prisma";
 
 async function getUsers() {
-  const res = await fetch('http://localhost:3000/api/users');
-
-  if (!res.ok) {
-    throw new Error("Something went wrong");
-  };
-
-  return res.json();
+  const users = await prisma.user.findMany();
+  return users;
 }
 
 export default async function Home() {
