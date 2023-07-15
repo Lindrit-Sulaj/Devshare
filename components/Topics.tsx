@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function Topics() {
+export default async function Topics() {
   return (
-    <div>Topics</div>
+    <div>
+      Topics
+    </div>
   )
 }
