@@ -12,6 +12,7 @@ export default function LoginModal() {
     e.preventDefault();
     
     const res = await signIn("credentials", {
+      redirect: true,
       email,
       password,
     })
