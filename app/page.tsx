@@ -1,6 +1,6 @@
 import { Post, Topics } from "@/components"
 
-export async function getUsers() {
+async function getUsers() {
   const res = await fetch('http://localhost:3000/api/users');
 
   if (!res.ok) {
