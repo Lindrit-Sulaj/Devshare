@@ -45,7 +45,6 @@ export const options: NextAuthOptions = {
         };
 
         return user;
-        return credentials as any;
       }
     })
   ],
