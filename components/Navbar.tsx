@@ -90,15 +90,14 @@ export default function Navbar() {
           )}
           {status === "authenticated" && (
             <div className='flex items-center gap-3'>
-              <Link href="/profile" className='flex justify-center items-center gap-1'>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.6} stroke="currentColor" className="w-6 h-6">
+              <Link href="/new" className='text-blue-600 font-medium border-solid border-[1px] border-blue-600 px-3 py-[7px] rounded-md hover:underline hover:text-white hover:bg-blue-600'>
+                Create Post
+              </Link>
+              <Link href="/profile">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.4} stroke="currentColor" className="w-7 h-7">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span className='text-lg'>Profile</span>
               </Link>
-              <button onClick={() => signOut()} className="mx-auto px-6 border-solid border-[1px] border-neutral-300 hover:bg-neutral-100 rounded-md hover:underline py-[6px]">
-                Log out
-              </button>
             </div>
           )}
         </div>
