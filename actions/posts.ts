@@ -3,7 +3,7 @@
 import prisma from "@/lib/prisma";
 import {getUser} from "./user";
 
-interface Post {
+export interface Post {
   title: string;
   body: string;
   tags: string[];
@@ -16,7 +16,8 @@ export async function createPost({ title, body, tags }: Post) {
       title,
       tags,
       body,
-      userId: user.id
+      userId: user.id,
+      createdAt: new Date().getTime()
     }
   })
 }

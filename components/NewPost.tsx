@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
 import { createPost } from '@/actions/posts';
+import { saveAsDraft } from '@/actions/draft';
 
 interface PostProps {
   title: string;
@@ -20,14 +21,36 @@ export default function NewPost() {
   const [tags, setTags] = useState<string[]>([]);
   const [body, setBody] = useState<string>("")
 
+  function resetState() {
+    setTitle("");
+    setTags([]);
+    setBody("")
+  }
+
   async function handlePublish() {
     const res = await createPost({
       title,
       tags,
       body
+    }).then(data => {
+      console.log(data);
+      resetState();
+    }).catch(err => {
+      alert(err.message)
     });
+  }
 
-    console.log(res);
+  async function handleSaveDraft() {
+    const res = await saveAsDraft({
+      title,
+      tags,
+      body
+    }).then(data => {
+      console.log(data)
+      resetState();
+    }).catch(err => {
+      alert(err.message)
+    });
   }
 
   return (
@@ -54,7 +77,7 @@ export default function NewPost() {
         )}
       </div>
       <div className='w-full lg:w-1/5 h-full flex flex-col justify-end gap-3'>
-        <button className='px-4 py-[10px] rounded-md border-solid border-[1px] border-neutral-300 bg-white hover:underline'>Save draft</button>
+        <button onClick={handleSaveDraft} className='px-4 py-[10px] rounded-md border-solid border-[1px] border-neutral-300 bg-white hover:underline'>Save draft</button>
         <button onClick={handlePublish} className='px-4 py-[10px] text-white rounded-md bg-blue-600 font-medium hover:underline'>Publish</button>
       </div>
     </section>
@@ -93,7 +116,7 @@ function Create({ title, tags, body, setTitle, setTags, setBody }: PostProps) {
         {tags.length <= 3 && <input value={newTag} onChange={e => setNewTag(e.target.value)} className='outline-none' onKeyDown={handleTag} type="text" placeholder={tags.length === 0 ? "Enter up to 4 tags" : "Add tag"} />}
       </div>
       <hr />
-      <textarea value={body} onChange={(e) => setBody(e.target.value)} className='w-full h-full outline-none py-6 text-lg' name="body" id="body" placeholder='Enter body here...' cols={30} rows={10}></textarea>
+      <textarea value={body} onChange={(e) => setBody(e.target.value)} className='w-full h-full outline-none py-6 text-lg' name="body" id="body" placeholder='Enter body here...' cols={30} rows={20}></textarea>
     </div>
   )
 }
@@ -102,7 +125,7 @@ export function Preview({ title, body, tags }: PostProps) {
   return (
     <div className='px-4 py-6'>
       <h1 className='text-3xl mb-3 lg:text-5xl font-extrabold placeholder:text-neutral-600 outline-none whitespace-normal w-full'>{title}</h1>
-      <div className="tags flex gap-2">
+      <div className="tags flex gap-2 mb-4">
         {tags.map((tag) => (
           <div key={tag} className='flex items-center bg-neutral-50 border-solid border-[1px] border-neutral-200 px-3 py-1 gap-1 rounded-full'>
             <Link href="#">#{tag}</Link>
@@ -115,7 +138,7 @@ export function Preview({ title, body, tags }: PostProps) {
             return <h1 className='text-2xl lg:text-3xl font-bold'>{children}</h1>
           },
           h2({ children }) {
-            return <h2 className='text-xl lg:text-2xl font-bold'>{children}</h2>
+            return <h2 className='text-xl lg:text-2xl font-bold mt-5 mb-1'>{children}</h2>
           },
           h3({ children }) {
             return <h3 className='text-lg lg:text-xl font-bold'>{children}</h3>

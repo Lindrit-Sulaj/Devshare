@@ -48,10 +48,6 @@ export default function RegisterModal() {
     onClose();
   }
 
-  useEffect(() => {
-    console.log(opened);
-  }, [])
-
   if (opened) {
     return (
       <div className="bg-[rgba(0,0,0,0.6)] fixed top-0 left-0 w-full h-screen flex items-center justify-center z-50">
