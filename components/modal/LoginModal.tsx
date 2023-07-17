@@ -1,10 +1,12 @@
 "use client"
 import React, { FormEvent, useState } from "react";
-import { useLoginModal } from "../ClientContext";
+import { useLoginModal, useRegisterModal } from "../ClientContext";
 import { signIn } from "next-auth/react";
 
 export default function LoginModal() {
   const { opened, onClose } = useLoginModal();
+  const registerModal = useRegisterModal();
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -39,7 +41,10 @@ export default function LoginModal() {
         <div className="bg-white p-6 rounded-md">
           <header>
             <h2 className="font-bold text-2xl">Log in</h2>
-            <p>Don't have an account? <button>Create one</button></p>
+            <p>Don't have an account? <button className="text-blue-600 hover:underline" onClick={() => {
+              onClose();
+              registerModal.onOpen();
+            }}>Create one</button></p>
           </header>
           <form onSubmit={handleSubmit}>
             <div className="block my-3">

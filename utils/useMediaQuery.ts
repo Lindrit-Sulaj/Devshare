@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect, useLayoutEffect, useMemo } from "react"
 
 interface Breakpoints {
   [breakpoint: string]: number
@@ -21,7 +21,7 @@ export default function useMediaQuery(): string {
     setWindowWidth(window.innerWidth);
   };
 
-  useEffect(() => handleResize(), []);
+  useLayoutEffect(() => handleResize(), []);
   useEffect(() => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);

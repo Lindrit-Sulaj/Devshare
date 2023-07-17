@@ -25,7 +25,7 @@ model Post {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   title String
   body String?
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @db.ObjectId
   comments Comment[]
   tags String[]

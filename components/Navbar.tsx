@@ -2,14 +2,19 @@
 import React, { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import useMediaQuery from '@/utils/useMediaQuery';
+
 import { useLoginModal } from './ClientContext';
+import { useRegisterModal } from './ClientContext';
+
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 
 export default function Navbar() {
-  const loginModal = useLoginModal();
-  const { data, status } = useSession();
   const breakpoint = useMediaQuery();
+  const loginModal = useLoginModal();
+  const registerModal = useRegisterModal();
+
+  const { data, status } = useSession();
   const [opened, setOpened] = useState(false);
 
   useEffect(() => {
@@ -86,7 +91,7 @@ export default function Navbar() {
               <button onClick={loginModal.onOpen} className='border-solid border-[1px] py-[6px] px-3 border-neutral-400 rounded-md hover:underline'>
                 Log in
               </button>
-              <button className='bg-blue-500 text-white px-3 rounded-md hover:bg-blue-600 hover:underline'>
+              <button onClick={registerModal.onOpen} className='bg-blue-500 text-white px-3 rounded-md hover:bg-blue-600 hover:underline'>
                 Create account
               </button>
             </>

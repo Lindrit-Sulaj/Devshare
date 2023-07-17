@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import AuthProvider from './AuthProvider'
 import { Navbar, ClientProvider } from '@/components'
 import LoginModal from '@/components/modal/LoginModal'
+import RegisterModal from '@/components/modal/RegisterModal'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -20,6 +21,7 @@ export default async function RootLayout({
         <AuthProvider>
           <ClientProvider>
             <LoginModal />
+            <RegisterModal />
             <Navbar />
           </ClientProvider>
           {children}
