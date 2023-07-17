@@ -1,7 +1,7 @@
 "use server"
 
 import prisma from "@/lib/prisma";
-import getUser from "./user";
+import {getUser} from "./user";
 
 interface Post {
   title: string;

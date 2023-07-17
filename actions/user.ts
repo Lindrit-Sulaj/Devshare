@@ -2,7 +2,14 @@ import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import prisma from "@/lib/prisma";
 
-export default async function getUser() {
+interface User {
+  email: string;
+  firstName: string;
+  lastName: string;
+  bio: string;
+}
+
+export async function getUser() {
   const session = await getServerSession(options);
   
   if (!session?.user) throw new Error("Couldn't find user")
