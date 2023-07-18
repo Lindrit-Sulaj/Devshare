@@ -7,7 +7,11 @@ module.exports = {
   ],
   theme: {
     extend: {
-      
+      colors: {
+        neutral: {
+          "850": "rgb(30, 30, 30)"
+        }
+      }
     },
   },
   plugins: [],

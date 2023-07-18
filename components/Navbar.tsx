@@ -74,10 +74,10 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="fixed top-0 w-full h-[67px] bg-white px-5 border-solid border-b-[1px] border-b-neutral-200">
+    <nav className="fixed top-0 w-full h-[67px] bg-neutral-950 px-5 border-solid border-b-[1px] border-b-neutral-700 text-white">
       <div className='max-w-screen-xl flex items-center h-full justify-between mx-auto'>
         <div className="flex gap-2">
-          <h2 className='font-bold flex items-center gap-2 bg-black text-white px-3 rounded-md py-[6px] text-lg'>
+          <h2 className='font-bold flex items-center gap-2 px-3 rounded-md py-[6px] text-lg'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
             </svg>
@@ -98,7 +98,7 @@ export default function Navbar() {
           )}
           {status === "authenticated" && (
             <div className='flex items-center gap-3'>
-              <Link href="/new" className='text-blue-600 font-medium border-solid border-[1px] border-blue-600 px-3 py-[7px] rounded-md hover:underline hover:text-white hover:bg-blue-600'>
+              <Link href="/new" className='text-blue-400 font-medium border-solid border-[1px] border-blue-400 px-3 py-[7px] rounded-md hover:underline hover:bg-blue-500 hover:border-blue-500 hover:text-black'>
                 Create Post
               </Link>
               <Link href="/profile">
@@ -121,8 +121,8 @@ export default function Navbar() {
 
 function Searchbar() {
   return (
-    <form className='border-solid border-[1px] border-neutral-300 pl-3 flex items-center rounded-md py-2 lg:py-0'>
-      <input className='outline-none grow w-[350px] max-w-full' type="text" placeholder='Search for anything' />
+    <form className='border-solid border-[1px] border-neutral-500 pl-3 flex items-center rounded-md py-2 lg:py-0'>
+      <input className='outline-none grow w-[350px] max-w-full bg-transparent' type="text" placeholder='Search for anything' />
       <button className='px-2 hover:bg-blue-100 transition-all h-full'>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.9} stroke="currentColor" className="w-6 h-6">
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
