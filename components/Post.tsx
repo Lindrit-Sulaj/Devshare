@@ -10,7 +10,7 @@ export default function Post({ id, title, userId, tags, createdAt, user }: Post 
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
   return (
-    <div className='bg-neutral-850 rounded-lg my-4 px-6 pb-4 pt-5 text-white'>
+    <div className='bg-neutral-850 rounded-lg my-4 px-6 pb-4 pt-5 text-white border-solid border-[1px] border-neutral-800'>
       <h5 className='font-medium text-neutral-300 hover:underline'>
         <Link href={`/u/${userId}`}>
           {`${firstName} ${lastName}`}
