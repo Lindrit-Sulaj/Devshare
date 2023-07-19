@@ -14,15 +14,29 @@ interface User {
   password: string;
 }
 
-export async function getUser() {
-  const session = await getServerSession(options);
+interface UserOptions {
+  select?: {
+    [key: string]: any
+  },
+  include?: {
+    [key: string]: any
+  }
+}
+
+export async function getSession() {
+  return await getServerSession(options)
+}
+
+export async function getUser(userOptions: UserOptions = {}) {
+  const session = await getSession();
   
   if (!session?.user) throw new Error("Couldn't find user")
 
   const user = await prisma.user.findUnique({
     where: {
       email: session?.user.email!
-    }
+    },
+    ...userOptions
   });
 
   if (!user) throw new Error("User doesn't exist");

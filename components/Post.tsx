@@ -1,13 +1,34 @@
 "use client"
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import type { Post, User } from '@prisma/client'
 
+import { savePost, unsavePost } from '@/actions/save'
+
 export default function Post({ id, title, userId, tags, createdAt, user }: Post & { user: User }) {
-  const { firstName, lastName, profilePicture } = user;
+  const [saved, setSaved] = useState(false);
+  const { firstName, lastName, saved: userSaved } = user;
   const date = new Date(createdAt).toLocaleString("de-DE").slice(0, 9).split(".")
 
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+  async function handleSave() {
+    setSaved(true);
+
+    await savePost(id);
+  }
+
+  async function handleUnsave() {
+    setSaved(false);
+
+    await unsavePost(id)
+  }
+
+  useEffect(() => {
+    if (userSaved.includes(id)) {
+      setSaved(true);
+    }
+  }, [])
 
   return (
     <div className='bg-neutral-850 rounded-lg my-4 px-6 pb-4 pt-5 text-white border-solid border-[1px] border-neutral-800'>
@@ -43,10 +64,20 @@ export default function Post({ id, title, userId, tags, createdAt, user }: Post 
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
             </svg>
           </button>
-          <button className='text-emerald-300'>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-[26px] h-[26px]">
+          <button onClick={async () => {
+            if (!saved) {
+              await handleSave()
+            } else {
+              await handleUnsave();
+            }
+          }} className='text-emerald-300'>
+            {!saved && <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-[26px] h-[26px]">
               <path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
+            </svg>}
+            {saved && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+              <path fillRule="evenodd" d="M6.32 2.577a49.255 49.255 0 0111.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 01-1.085.67L12 18.089l-7.165 3.583A.75.75 0 013.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93z" clipRule="evenodd" />
             </svg>
+            }
           </button>
         </div>
       </div>
