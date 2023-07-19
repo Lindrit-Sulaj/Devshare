@@ -37,11 +37,11 @@ export default function LoginModal() {
 
   if (opened) {
     return (
-      <div className="bg-[rgba(0,0,0,0.6)] fixed top-0 left-0 w-full h-screen flex items-center justify-center z-50">
-        <div className="bg-white p-6 rounded-md">
+      <div className="bg-[rgba(0,0,0,0.8)] fixed top-0 left-0 w-full h-screen flex items-center justify-center z-50">
+        <div className="bg-neutral-800 text-white p-6 rounded-md">
           <header>
             <h2 className="font-bold text-2xl">Log in</h2>
-            <p>Don't have an account? <button className="text-blue-600 hover:underline" onClick={() => {
+            <p>Don't have an account? <button className="text-blue-300 hover:underline" onClick={() => {
               onClose();
               registerModal.onOpen();
             }}>Create one</button></p>
@@ -49,11 +49,11 @@ export default function LoginModal() {
           <form onSubmit={handleSubmit}>
             <div className="block my-3">
               <label className="text-sm" htmlFor="email">Email</label>
-              <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="email" placeholder="johndoe@gmail.com" className="border-solid border-[1px] px-3 border-neutral-300 w-full py-[6px] rounded-md mt-1 outline-blue-500" required />
+              <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="email" placeholder="johndoe@gmail.com" className="border-solid border-[1px] px-3 border-neutral-500 w-full py-[6px] rounded-md mt-1 outline-blue-500 bg-transparent" required />
             </div>
             <div className="block my-3">
               <label htmlFor="password">Password</label>
-              <input value={password} onChange={(e) => setPassword(e.target.value)} type="text" id="password" placeholder="*****" className="border-solid border-[1px] px-3 border-neutral-300 w-full py-[6px] rounded-md mt-1 outline-blue-500" required />
+              <input value={password} onChange={(e) => setPassword(e.target.value)} type="text" id="password" placeholder="*****" className="border-solid border-[1px] px-3 border-neutral-500 w-full py-[6px] rounded-md mt-1 outline-blue-500 bg-transparent" required />
             </div>
             <div className="flex justify-end gap-2">
               <button type="button" className="py-2 px-4 border-solid border-[1px] border-neutral-300 rounded-md hover:underline" onClick={handleClose}>Close</button>
