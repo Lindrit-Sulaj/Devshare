@@ -54,11 +54,11 @@ export default function NewPost() {
   }
 
   return (
-    <section className='flex flex-col lg:flex-row gap-4 overflow-y-auto h-full'>
-      <div className='bg-white w-full lg:w-4/5 grow h-full rounded-lg'>
-        <div className="bg-neutral-100 w-full flex justify-end gap-2 py-2">
-          <button className={`px-2 rounded-md py-2 ${tab === "edit" && "bg-white border-solid border-[1px] border-neutral-200"}`} onClick={() => setTab("edit")}>Edit</button>
-          <button className={`px-2 rounded-md py-2 ${tab === "preview" && "bg-white border-solid border-[1px] border-neutral-200"}`} onClick={() => setTab("preview")}>Preview</button>
+    <section className='flex flex-col lg:flex-row gap-4 overflow-y-auto h-full text-white'>
+      <div className='bg-neutral-800 w-full lg:w-4/5 grow h-full rounded-lg'>
+        <div className="bg-neutral-900 w-full flex justify-end gap-2 py-2">
+          <button className={`px-2 rounded-md py-2 ${tab === "edit" && "bg-neutral-700 border-solid border-[1px] border-neutral-600"}`} onClick={() => setTab("edit")}>Edit</button>
+          <button className={`px-2 rounded-md py-2 ${tab === "preview" && "bg-neutral-700 border-solid border-[1px] border-neutral-600"}`} onClick={() => setTab("preview")}>Preview</button>
         </div>
         {tab === "edit" ? (
           <Create
@@ -101,7 +101,7 @@ function Create({ title, tags, body, setTitle, setTags, setBody }: PostProps) {
 
   return (
     <div className='p-8'>
-      <input value={title} onChange={(e) => setTitle(e.target.value)} className='text-3xl lg:text-5xl font-extrabold placeholder:text-neutral-600 outline-none whitespace-normal w-full' type="text" placeholder='New post title here...' />
+      <input value={title} onChange={(e) => setTitle(e.target.value)} className='text-3xl lg:text-5xl font-extrabold bg-transparent placeholder:text-neutral-500 outline-none whitespace-normal w-full' type="text" placeholder='New post title here...' />
       <div className='mt-4 mb-4 flex items-center flex-wrap gap-2'>
         {tags.map((tag) => (
           <div key={tag} className='flex items-center bg-neutral-50 border-solid border-[1px] border-neutral-200 px-3 py-1 gap-1 rounded-full'>
@@ -113,10 +113,10 @@ function Create({ title, tags, body, setTitle, setTags, setBody }: PostProps) {
             </button>
           </div>
         ))}
-        {tags.length <= 3 && <input value={newTag} onChange={e => setNewTag(e.target.value)} className='outline-none' onKeyDown={handleTag} type="text" placeholder={tags.length === 0 ? "Enter up to 4 tags" : "Add tag"} />}
+        {tags.length <= 3 && <input value={newTag} onChange={e => setNewTag(e.target.value)} className='outline-none bg-transparent' onKeyDown={handleTag} type="text" placeholder={tags.length === 0 ? "Enter up to 4 tags" : "Add tag"} />}
       </div>
-      <hr />
-      <textarea value={body} onChange={(e) => setBody(e.target.value)} className='w-full h-full outline-none py-6 text-lg' name="body" id="body" placeholder='Enter body here...' cols={30} rows={20}></textarea>
+      <hr className='h-[1px] border-none bg-neutral-600' />
+      <textarea value={body} onChange={(e) => setBody(e.target.value)} className='w-full h-full outline-none py-6 text-lg bg-transparent' name="body" id="body" placeholder='Enter body here...' cols={30} rows={20}></textarea>
     </div>
   )
 }

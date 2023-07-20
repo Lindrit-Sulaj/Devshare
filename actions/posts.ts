@@ -62,3 +62,11 @@ export async function getPosts({ tag, query = "" }: { tag?: string; query?: stri
     }
   })
 }
+
+export async function getPost(postId: string) {
+  return await prisma.post.findUnique({
+    where: {
+      id: postId
+    }
+  })
+}

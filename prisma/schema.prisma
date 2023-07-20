@@ -32,6 +32,8 @@ model Post {
   comments Comment[]
   tags String[]
   createdAt Int
+
+  likedBy String[]
 }
 
 model Draft {
