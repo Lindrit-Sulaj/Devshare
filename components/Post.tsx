@@ -21,25 +21,25 @@ export default function Post({ id, title, userId, likedBy, tags, createdAt, user
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
   async function handleSave() {
-    if (status === "unauthenticated") return;
+    if (!sessionUser) return;
     setSaved(true);
     await savePost(id);
   }
 
   async function handleUnsave() {
-    if (status === "unauthenticated") return;
+    if (!sessionUser) return;
     setSaved(false);
     await unsavePost(id)
   }
 
   async function handleLike() {
-    if (status === "unauthenticated") return;
+    if (!sessionUser) return;
     setLiked(true);
     await likePost(id, userId)
   }
 
   async function handleRemoveLike() {
-    if (status === "unauthenticated") return;
+    if (!sessionUser) return;
     setLiked(false);
     await removeLikeFromPost(id, userId)
   }
