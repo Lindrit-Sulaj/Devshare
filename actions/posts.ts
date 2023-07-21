@@ -22,38 +22,15 @@ export async function createPost({ title, body, tags }: Post) {
   })
 }
 
-export async function getPosts({ tag, query = "" }: { tag?: string; query?: string; } = {}) {
-  if (tag) {
-    return await prisma.post.findMany({
-      where: {
-        tags: {
-          has: tag
-        }
-      },
-      include: {
-        user: true
-      },
-      orderBy: {
-        createdAt: "asc"
-      }
-    })
-  } else if (query) {
-    return await prisma.post.findMany({
-      where: {
-        title: {
-          contains: query
-        }
-      },
-      include: {
-        user: true
-      },
-      orderBy: {
-        createdAt: "asc"
-      }
-    })
-  }
+interface GetPost {
+  userId?: string;
+}
 
+export async function getPosts({ userId }: GetPost = {}) {
   return await prisma.post.findMany({
+    where: {
+      ...(userId && { userId: userId })
+    },
     include: {
       user: true
     },

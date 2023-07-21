@@ -43,6 +43,19 @@ export async function getUser(userOptions: UserOptions = {}) {
   return user;
 }
 
+export async function getOtherUser(id: string, userOptions: UserOptions = {}) {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: id
+    },
+    ...userOptions
+  });
+
+  if (!user) throw new Error("Couldn't find user")
+
+  return user;
+}
+
 export async function createUser({ email, firstName, lastName, bio, password }: User) {
   const hashedPassword = await bcrypt.hash(password, 12);
 
