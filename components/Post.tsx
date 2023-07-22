@@ -68,9 +68,9 @@ export default function Post({ id, title, userId, likedBy, tags, createdAt, user
       <div className="flex gap-1 my-2">
         {
           tags.map(tag => (
-            <Link className='px-2 py-[2px] hover:bg-neutral-800 transition-all border-solid border-neutral-800 hover:border-neutral-400 border-[1px] rounded-md' key={tag} href={`/t/${tag}`}>
+            <p className='px-2 py-[2px] hover:bg-neutral-800 transition-all border-solid border-neutral-800 hover:border-neutral-400 border-[1px] rounded-md' key={tag}>
               #{tag}
-            </Link>
+            </p>
           ))
         }
       </div>

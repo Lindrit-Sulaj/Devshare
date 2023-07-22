@@ -2,6 +2,7 @@
 
 import { getServerSession } from "next-auth";
 import bcrypt from 'bcrypt'
+import type { User as PrismaUser } from "@prisma/client";
 
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import prisma from "@/lib/prisma";
@@ -43,12 +44,14 @@ export async function getUser(userOptions: UserOptions = {}) {
   return user;
 }
 
-export async function getOtherUser(id: string, userOptions: UserOptions = {}) {
+export async function getOtherUser(id: string) {
   const user = await prisma.user.findUnique({
     where: {
       id: id
     },
-    ...userOptions
+    include: {
+      posts: true
+    }
   });
 
   if (!user) throw new Error("Couldn't find user")

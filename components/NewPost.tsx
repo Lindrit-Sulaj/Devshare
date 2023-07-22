@@ -77,7 +77,7 @@ export default function NewPost() {
         )}
       </div>
       <div className='w-full lg:w-1/5 h-full flex flex-col justify-end gap-3'>
-        <button onClick={handleSaveDraft} className='px-4 py-[10px] rounded-md border-solid border-[1px] border-neutral-300 bg-white hover:underline'>Save draft</button>
+        <button onClick={handleSaveDraft} className='px-4 py-[10px]  rounded-md border-solid border-[1px] border-neutral-300 bg-neutral-600 hover:underline'>Save draft</button>
         <button onClick={handlePublish} className='px-4 py-[10px] text-white rounded-md bg-blue-600 font-medium hover:underline'>Publish</button>
       </div>
     </section>

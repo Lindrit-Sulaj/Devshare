@@ -23,8 +23,8 @@ export default function Navbar() {
 
   if (["md", "sm"].includes(breakpoint)) {
     return (
-      <nav className="fixed top-0 w-full h-[67px] bg-white px-5 border-solid border-b-[1px] border-b-neutral-200 flex items-center justify-between">
-        <h2 className='font-bold flex items-center gap-2 bg-black text-white px-3 rounded-md py-[6px] text-lg'>
+      <nav className="fixed top-0 w-full h-[67px] bg-neutral-950 px-5 border-solid border-b-[1px] text-white border-b-neutral-700 flex items-center justify-between">
+        <h2 className='font-bold flex items-center gap-2 text-white px-3 rounded-md py-[6px] text-lg'>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
           </svg>
@@ -43,7 +43,7 @@ export default function Navbar() {
         </button>
 
         {opened && (
-          <div className='fixed top-[67px] left-0 bg-white py-6 w-full px-5'>
+          <div className='fixed top-[67px] left-0 bg-neutral-950 py-6 w-full px-5'>
             <Searchbar />
             {status === "unauthenticated" && (
               <div className='flex gap-2 my-3'>
@@ -59,7 +59,7 @@ export default function Navbar() {
                   </svg>
                   <span className='text-lg'>Profile</span>
                 </Link>
-                <Link href="/new" className='text-blue-600 font-medium border-solid border-[1px] border-blue-600 px-3 py-[7px] rounded-md hover:underline hover:text-white hover:bg-blue-600 mx-auto block my-2'>
+                <Link href="/new" className='text-blue-300 font-medium border-solid border-[1px] border-blue-300 px-3 py-[7px] rounded-md hover:underline hover:text-white hover:bg-blue-600 mx-auto block my-2'>
                   Create Post
                 </Link>
                 <button onClick={() => signOut()} className="mx-auto px-6 bg-blue-500 text-white rounded-md hover:bg-blue-600 hover:underline py-[6px] mt-3">
